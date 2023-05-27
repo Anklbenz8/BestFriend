@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc242ce4f6286c4594e2bc440d79748, type: 3}
   m_Name: GptConnectionSettings
   m_EditorClassIdentifier: 
-  privateApiKey: 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
+  privateApiKey: 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
   organization: 
