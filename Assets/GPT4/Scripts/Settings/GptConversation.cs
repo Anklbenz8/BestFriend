@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using SerializeDeserialize;
@@ -18,9 +17,8 @@ public class GptConversation {
 		SetLegend();
 	}
 
-	public void StopConversation() {
+	public void StopConversation() =>
 		_messagingHistory.Clear();
-	}
 
 	public async UniTask<string> SendUser(string message) {
 		_messagingHistory.Add(new UserApiMessage() {content = message});
