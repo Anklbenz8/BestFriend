@@ -1,22 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+
 using TMPro;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
-public static class TypeWriterExtensions
+public class Typewriter : AnimatedView
 {
-   public static async UniTask TypeWithDelay(this TMP_Text textField, string message, int durationMilliseconds) {
-      foreach (var character in message) {
-         textField.text += character;
-         await UniTask.Delay(durationMilliseconds);
-      }
-   }
+    private const char PAUSE_CHAR = '~';
 
-   public static async UniTask TypeWithRandomDelay(this TMP_Text textField, string message, int minMilliseconds, int maxMilliseconds) {
-      foreach (var character in message) {
-         textField.text += character;
-         await UniTask.Delay(Random.Range(minMilliseconds, maxMilliseconds));
-      }
-   }
+    [SerializeField] private int minDelayMilliseconds = 20, maxDelayMilliseconds = 200, pauseMilliseconds = 500;
+    [SerializeField] private TMP_Text textField;
+
+    public async UniTask TypeAsNew(string message) {
+        textField.text = string.Empty;
+        await Type(message);
+    }
+    public async UniTask Type(string message) {
+
+        foreach (var character in message) {
+            if (character == PAUSE_CHAR) {
+                await UniTask.Delay(pauseMilliseconds);
+                continue;
+            }
+
+            textField.text += character;
+            await UniTask.Delay(Random.Range(minDelayMilliseconds, maxDelayMilliseconds));
+        }
+    }
+
 }
