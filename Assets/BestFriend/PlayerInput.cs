@@ -10,6 +10,7 @@ public class PlayerInput : AnimatedView
    [SerializeField] private string placeholderMessage;
 
    private UniTaskCompletionSource<string> _inputCompletionSource;
+   
 
    private void Awake() {
        inputField.onSubmit.AddListener(OnEndEdit);
